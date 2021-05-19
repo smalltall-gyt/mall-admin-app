@@ -1,0 +1,40 @@
+
+
+export default [
+  {
+    path:'/login',
+    name:'login',
+    component:()=>import('@/views/Login/index.vue')
+  },
+  {
+    path:'/register',
+    name:'register',
+    component:()=>import('@/views/Register/index.vue')
+  },
+  {
+    path:'/',
+    redirect:'/home',
+  },
+  {
+    path:'/home',
+    name:'home',
+    component:()=>import('@/views/Home/index.vue')
+  },
+  {
+    path:'/goods',
+    redirect:'/goods/list',
+    component:()=>import('@/views/Goods/index.vue'),
+    children:[
+      {
+        path:'list',
+        name:'goodsList',
+        component:()=>import('@/views/GoodsList/index.vue')
+      },
+      {
+        path:'add',
+        name:'goodsAdd',
+        component:()=>import('@/views/AddGoods/index.vue')
+      }
+    ]
+  }
+]

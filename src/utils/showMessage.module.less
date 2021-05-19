@@ -1,0 +1,30 @@
+
+@import '~@/styles/var.less';
+.message {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  padding: 10px 20px;
+  box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, .5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #fff;
+  border-radius: 5px;
+  transform:translate(-50%,-50%) translateY(20px);
+  opacity: 0;
+  transition: all .5s linear;
+  &-info {
+    background: @primary;
+  }
+  &-success {
+    background: @success;
+  }
+  &-warn {
+    background: @warn;
+  }
+  &-error {
+    background: @danger;
+  }
+}
