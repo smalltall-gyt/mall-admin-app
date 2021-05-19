@@ -1,25 +1,22 @@
 <template>
   <div class="goods-list-container">
-    <Crumb :crumbList="crumbList"/>
+
     <Search />
     <Table :tableData="tableData"/>
   </div>
 </template>
 
 <script>
-import Crumb from '@/components/Crumb'
 import Search from './components/Search'
 import Table from './components/Table'
 import {getAllProducts} from '@/api/getHomeData'
 export default {
   components:{
-    Crumb,
     Search,
     Table
   },
   data(){
     return {
-      crumbList:[{name:'商品',path:'/goods'},{name:'商品列表',path:'/goods/list'}],
       tableData:[],
     }
   },

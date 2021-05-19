@@ -1,6 +1,5 @@
 <template>
   <div class="main-container">
-    <Crumb :crumbList="crumbList"/>
     <div class="card-container">
       <Card />
       <Card />
@@ -11,18 +10,11 @@
 </template>
 
 <script>
-import Crumb from '@/components/Crumb'
 import Card from '@/components/Card'
 export default {
   components:{
-    Crumb,
     Card
   },
-  data(){
-    return {
-      crumbList:[{name:'首页',path:'/'},{name:'统计',path:'/home'}]
-    }
-  }
 }
 </script>
 

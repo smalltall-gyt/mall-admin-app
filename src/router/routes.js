@@ -14,27 +14,23 @@ export default [
   {
     path:'/',
     redirect:'/home',
-  },
-  {
-    path:'/home',
-    name:'home',
-    component:()=>import('@/views/Home/index.vue')
-  },
-  {
-    path:'/goods',
-    redirect:'/goods/list',
-    component:()=>import('@/views/Goods/index.vue'),
+    component:()=>import('@/views/Home/index.vue'),
     children:[
       {
-        path:'list',
+        path:'/goods/list',
         name:'goodsList',
         component:()=>import('@/views/GoodsList/index.vue')
       },
       {
-        path:'add',
+        path:'/goods/add',
         name:'goodsAdd',
         component:()=>import('@/views/AddGoods/index.vue')
+      },
+      {
+        path:'/home',
+        name:'home',
+        component:()=>import('@/views/Home/components/Main.vue')
       }
     ]
-  }
+  },
 ]

@@ -1,14 +1,6 @@
 <template>
   <div id="app">
-    <Layout>
-      <template #left>
-        <Aside :isAdmin="false"/>
-      </template>
-      <template #right>
-        <router-view></router-view>
-      </template>
-    </Layout>
-    
+    <router-view></router-view>
   </div>
 </template>
 <script>

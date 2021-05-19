@@ -1,18 +1,30 @@
 <template>
   <div class="home-container">
-    <Main />
+    <Layout>
+      <template #left>
+        <Aside :isAdmin="false"/>
+      </template>
+      <template #right>
+        <Crumb :crumbList="crumbList"/>
+        <router-view></router-view>
+      </template>
+    </Layout>
   </div>
 </template>
 
 <script>
+import Layout from '@/components/Layout'
 import Aside from '@/components/Aside/index.vue'
-import Main from './components/Main.vue'
+import Crumb from '@/components/Crumb'
 export default {
   components:{
-    Main
+    Aside,
+    Crumb,
+    Layout
   },
   data(){
     return {
+      crumbList:[{name:'首页',path:'/'},{name:'统计',path:'/home'}]
     }
   },
   computed:{
