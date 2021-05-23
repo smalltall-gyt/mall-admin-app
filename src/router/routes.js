@@ -4,7 +4,7 @@ export default [
   {
     path:'/login',
     name:'login',
-    component:()=>import('@/views/Login/index.vue')
+    component:()=>import('@/views/Login/index.vue'),
   },
   {
     path:'/register',

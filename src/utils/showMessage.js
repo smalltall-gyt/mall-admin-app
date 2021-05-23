@@ -7,7 +7,7 @@
 import Icon from '@/components/Icon/index.vue'
 import getComponentWrapper from './getComponentWrapper'
 import styles from './showMessage.module.less'
-export default function(props){
+export default function(props,callback){
   const type = props.type || 'info';
   const duration = props.duration || 2000;
   const container = props.container || document.body;
@@ -27,6 +27,7 @@ export default function(props){
     div.style.opacity = 0;
     div.addEventListener('transitionend',function(){
       div.remove();
+      callback && callback();
     },{once:true},false)
   }, duration);
   // 强制渲染页面

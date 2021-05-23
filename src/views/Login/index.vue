@@ -4,29 +4,32 @@
       <div class="email-container form-item">
         <div>
           <label for="email"><span>*</span>邮箱:</label>
-          <input type="text" name="" id="email" placeholder="Email" @blur="checkEmail">
+          <input type="text" name="" id="email" placeholder="Email" @blur="checkEmail" v-model="email">
         </div>
         <span class="prompt-msg">{{emailMsg}}</span>
       </div>
       <div class="pwd-container form-item">
         <div>
           <label for=""><span>*</span>密码:</label>
-          <input type="password" id="pwd" placeholder="Password">
+          <input type="password" id="pwd" placeholder="Password" v-model="pwd">
         </div>
         <span class="prompt-msg">{{pwdMsg}}</span>
       </div>
       <div class="form-item">
-        <button class="login-btn">登录</button>
-        <button class="register-btn">注册</button>
+        <button class="login-btn" :disabled="isLoading">{{isLoading?'loading...':'登录'}}</button>
+        <button class="register-btn" @click="toRegister">注册</button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
   data(){
     return {
+      email:'',
+      pwd:'',
       emailMsg:'',
       pwdMsg:''
     }
@@ -39,7 +42,26 @@ export default {
       }else{
         this.emailMsg = '邮箱格式错误'
       }
+    },
+    //跳转到注册页面
+    toRegister(){
+      this.$router.push({
+        name:'register',
+      })
+    },
+    async handleSubmit(){
+     const resp = await this.$store.dispatch('loginUser/login',{email:this.email,pwd:this.pwd})
+     if(resp.status === 'success'){
+       this.$showMessage({msg:resp.info},()=>{
+         this.$router.push('/home')
+       })
+     }else if(resp.status === 'fail'){
+       this.$showMessage({type:'error',msg:resp.info})
+     }
     }
+  },
+  computed:{
+    ...mapState('loginUser',['isLoading'])
   }
 }
 </script>
@@ -51,6 +73,7 @@ export default {
     height: 260px;
     border: 1px solid #ccc;
     margin: 100px auto;
+    background-color: #fff;
     form {
       width: 100%;
       height: 100%;
@@ -94,6 +117,10 @@ export default {
         .login-btn {
           color: #fff;
           background-color: rgb(31, 204, 74);
+          &:disabled {
+            background-color: rgb(18, 105, 40);
+            cursor: not-allowed;
+          }
         }
       }
     }

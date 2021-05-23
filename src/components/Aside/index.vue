@@ -1,6 +1,6 @@
 <template>
   <div class="aside-container">
-    <template v-if="isAdmin">
+    <template v-if="userInfo && userInfo.role === 'admin'">
       <el-menu 
         :default-active="$route.path"
         router
@@ -92,6 +92,7 @@
 
 <script>
 import Icon from '@/components/Icon'
+import {mapState} from 'vuex'
 export default {
   props:{
     isAdmin:{
@@ -111,6 +112,9 @@ export default {
     },
 
   },
+  computed:{
+    ...mapState('loginUser',['userInfo'])
+  }
 };
 </script>
 
