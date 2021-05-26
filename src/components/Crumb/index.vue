@@ -1,7 +1,7 @@
 <template>
   <div class="crumb-container">
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: item.path }" v-for="(item,index) in crumbList" :key="index"><a href="#">{{item.name}}</a></el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: item.path }" v-for="(item,index) in routeArr" :key="index"><a href="#">{{item.meta.title}}</a></el-breadcrumb-item>
     </el-breadcrumb>
     <div class="user-info" @click="collapse = !collapse">
       <span>{{userInfo.username}}</span>
@@ -17,18 +17,13 @@
 import Icon from '@/components/Icon'
 import {mapState} from 'vuex'
 export default {
-  props:{
-    crumbList:{
-      type:Array,
-      require:true
-    }
-  },
   components:{
     Icon
   },
   data(){
     return {
-      collapse:false
+      collapse:false,
+      routeArr:[]
     }
   },
   methods:{
@@ -43,6 +38,18 @@ export default {
   },
   computed:{
     ...mapState('loginUser',['userInfo'])
+  },
+  watch:{
+    $route:{
+      handler(newValue){
+        const newRouteArr = [];
+        for(let i = 0; i < newValue.matched.length; i++){
+          newRouteArr.push(newValue.matched[i])
+        }
+        this.routeArr = newRouteArr
+      },
+      immediate:true
+    }
   }
 };
 </script>

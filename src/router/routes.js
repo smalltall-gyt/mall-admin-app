@@ -15,20 +15,32 @@ export default [
     path:'/',
     redirect:'/home',
     component:()=>import('@/views/Home/index.vue'),
+    meta:{
+      title:'首页'
+    },
     children:[
       {
         path:'/goods/list',
         name:'goodsList',
+        meta:{
+          title:'商品列表'
+        },
         component:()=>import('@/views/GoodsList/index.vue')
       },
       {
         path:'/goods/add',
         name:'goodsAdd',
+        meta:{
+          title:'添加商品'
+        },
         component:()=>import('@/views/AddGoods/index.vue')
       },
       {
         path:'/home',
         name:'home',
+        meta:{
+          title:'统计'
+        },
         component:()=>import('@/views/Home/components/Main.vue')
       }
     ]

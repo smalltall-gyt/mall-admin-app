@@ -5,7 +5,7 @@
         <Aside :isAdmin="false"/>
       </template>
       <template #right>
-        <Crumb :crumbList="crumbList"/>
+        <Crumb />
         <router-view></router-view>
       </template>
     </Layout>
@@ -21,11 +21,6 @@ export default {
     Aside,
     Crumb,
     Layout
-  },
-  data(){
-    return {
-      crumbList:[{name:'首页',path:'/'},{name:'统计',path:'/home'}]
-    }
   },
   computed:{
   

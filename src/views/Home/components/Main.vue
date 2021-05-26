@@ -5,15 +5,17 @@
       <Card />
       <Card />
     </div>
-    
+    <Echarts />
   </div>
 </template>
 
 <script>
 import Card from '@/components/Card'
+import Echarts from '@/components/Echarts'
 export default {
   components:{
-    Card
+    Card,
+    Echarts
   },
 }
 </script>
@@ -22,7 +24,6 @@ export default {
   .main-container {
     width: 100%;
     height: 100%;
-    overflow: scroll;
     .card-container {
       display: flex;
       width: 100%;
