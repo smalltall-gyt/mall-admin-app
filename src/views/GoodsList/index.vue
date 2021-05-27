@@ -1,7 +1,9 @@
 <template>
   <div class="goods-list-container">
     <Search :options="allCategoryComputed" @search="handleSearch"/>
-    <Table :tableData="tableDataComputed"/>
+    <Table :tableData="tableDataComputed"
+            @deleteProduct="deletePro"
+    />
     <Pagination :currentPage="currentPage" 
                 :maxPage="maxPage" 
                 @prev="handlePrev"
@@ -17,7 +19,7 @@
 import Search from './components/Search'
 import Table from './components/Table'
 import Pagination from '@/components/Pagination'
-import {getAllProducts,getAllCatrgory} from '@/api/getHomeData'
+import {getAllProducts,getAllCatrgory,deleteProduct} from '@/api/getHomeData'
 export default {
   components:{
     Search,
@@ -130,6 +132,14 @@ export default {
     //点击搜索 
     handleSearch(props){
       this.props = props
+      this.getAllProducts();
+    },
+    //删除商品
+    async deletePro(id){
+      const res = await deleteProduct(id);
+      if(res.status === 'success'){
+        this.$showMessage({msg:'删除成功'});
+      }
       this.getAllProducts();
     }
   }
