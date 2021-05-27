@@ -12,12 +12,12 @@
         <el-table-column prop="title" label="标题" width="220px">
         </el-table-column>
         <el-table-column prop="desc" label="描述" width="180px"> </el-table-column>
-        <el-table-column prop="category" label="类目"  width="50px"></el-table-column>
+        <el-table-column prop="categoryName" label="类目"  width="80px"></el-table-column>
         <el-table-column prop="price" label="预售价格"> </el-table-column>
         <el-table-column prop="price_off" label="折扣价格"> </el-table-column>
         <el-table-column prop="tags" label="标签"> </el-table-column>
         <el-table-column prop="inventory" label="限制购买数"> </el-table-column>
-        <el-table-column prop="status" label="上架状态">{{}}</el-table-column>
+        <el-table-column prop="status" label="上架状态"></el-table-column>
         <el-table-column  label="操作" width="200px">
           <template>
             <button @click="handleClick">编辑</button>

@@ -16,16 +16,18 @@
         </template>
         <template v-else-if="currentPage >= 5 && currentPage <= maxPage - 4">
           <li @click="prev">&lt;</li>
+          <li @click="changePage(1)" :class="{active:currentPage===1}">1</li>
           <li @click="prev5">...</li>
           <li v-for="(i) in 5" :key="i+currentPage-3" :class="{active:currentPage===i+currentPage-3}" @click="changePage(i+currentPage-3)">{{i+currentPage-3}}</li>
           <li @click="next5">...</li>
+          <li @click="changePage(maxPage)" :class="{active:currentPage===maxPage}">{{maxPage}}</li>
           <li @click="next">&gt;</li>
         </template>
         <template v-else>
           <li @click="prev">&lt;</li>
           <li :class="{active:currentPage === 1}" @click="changePage(1)">1</li>
           <li @click="prev5">...</li>
-          <li v-for="i in 6" :key="maxPage - 6 + i" :class="{active:currentPage===maxPage-6+i}" @click="changePage(maxPage-6+i)">{{maxPage - 6 + i}}</li>
+          <li v-for="i in 5" :key="maxPage - 5 + i" :class="{active:currentPage===maxPage-5+i}" @click="changePage(maxPage-5+i)">{{maxPage - 5 + i}}</li>
           <li @click="next">&gt;</li>
         </template>
       </template>

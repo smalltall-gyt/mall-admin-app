@@ -8,14 +8,16 @@
       <label for="">商品类目:</label>
       <div class="block">
         <el-cascader
-          placeholder="试试搜索：指南"
+          placeholder="试试搜索：苹果"
           :options="options"
           filterable
+          clearable
+          @change="handleChange"
         ></el-cascader>
       </div>
     </div>
     <div class="item">
-      <button>搜索</button>
+      <button @click="handleSearch">搜索</button>
     </div>
   </div>
 </template>
@@ -33,8 +35,20 @@ export default {
   data() {
     return {
       keywords: "",
+      selectCategory:null,
     };
   },
+  methods:{
+    handleChange(item){
+      this.selectCategory = item[0];
+    },
+    handleSearch(){
+      this.$emit('search',{
+        category:this.selectCategory,
+        searchWord:this.keywords
+      })
+    }
+  }
 };
 </script>
 
