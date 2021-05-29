@@ -27,14 +27,24 @@ export async function getAllCatrgory(){
 
 // 添加商品接口
 export async function addProducts(props){
-  const res = await request.post('/products/add',{
-    data:props
-  })
-  console.log(res);
+  const res = await request.post('/products/add',props)
+  return res;
 }
 
 // 删除商品
 export async function deleteProduct(productId){
   const res = await request.delete(`/products/${productId}`)
+  return res;
+}
+
+//获取商品详细信息
+export async function getDetailProduct(productId){
+  const res = await request.get(`/products/${productId}`);
+  return res;
+}
+
+//编辑商品
+export async function editProduct(props){
+  const res = await request.put('/products/edit',props);
   return res;
 }

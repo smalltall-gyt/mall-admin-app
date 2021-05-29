@@ -42,6 +42,14 @@ export default [
           title:'统计'
         },
         component:()=>import('@/views/Home/components/Main.vue')
+      },
+      {
+        path:'/goods/edit/:id',
+        name:'editGood',
+        meta:{
+          title:'编辑商品'
+        },
+        component:()=>import('@/views/AddGoods/index.vue')
       }
     ]
   },

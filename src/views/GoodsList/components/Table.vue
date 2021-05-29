@@ -53,6 +53,7 @@ export default {
   methods: {
     handleEdit(index, row) {
       console.log(index, row);
+      this.$emit('editProduct',row);
     },
     handleDelete(index, row) {
       console.log(index, row);

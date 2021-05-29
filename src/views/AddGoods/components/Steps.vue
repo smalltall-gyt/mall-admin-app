@@ -1,12 +1,12 @@
 <template>
   <div class="steps-container">
-    <el-steps :active="1" align-center>
+    <el-steps :active="active" align-center>
       <el-step
-        title="步骤1"
+        title="填写商品基本信息"
         description=""
       ></el-step>
       <el-step
-        title="步骤2"
+        title="填写商品销售信息"
         description=""
       ></el-step>
     </el-steps>
@@ -14,7 +14,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props:{
+    active:{
+      type:Number,
+      default:1
+    }
+  }
+};
 </script>
 
 <style lang="less" scoped>

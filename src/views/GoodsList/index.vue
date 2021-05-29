@@ -3,6 +3,7 @@
     <Search :options="allCategoryComputed" @search="handleSearch"/>
     <Table :tableData="tableDataComputed"
             @deleteProduct="deletePro"
+            @editProduct="editPro"
     />
     <Pagination :currentPage="currentPage" 
                 :maxPage="maxPage" 
@@ -34,6 +35,7 @@ export default {
       total:0,
       allCategory:[],
       props:{},
+
     }
   },
   async created(){
@@ -86,6 +88,11 @@ export default {
       const data = await getAllProducts({page:this.currentPage,size:this.size,...this.props});
       this.total = data.data.total;
       this.tableData = data.data.data
+      //过滤掉一些错误的数据
+      this.tableData = this.tableData.filter((item)=>{
+        return item.title;
+      })
+
     },
     //获取所有分类
     async getAllCatrgory(){
@@ -141,6 +148,15 @@ export default {
         this.$showMessage({msg:'删除成功'});
       }
       this.getAllProducts();
+    },
+    //编辑商品
+    editPro(pro){
+      this.$router.push({
+        name:'editGood',
+        params:{
+          id:pro.id
+        }
+      })
     }
   }
 }
